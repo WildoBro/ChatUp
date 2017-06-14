@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'conversations#index'
+
+  authenticated :user do
+    root 'conversations#index'
+  end
+
+  unauthenticated :user do
+    devise_scope :user do
+      get "/" => "devise/sessions#new"
+    end
+  end
+
+  resources :conversations, only: [:create, :show] do
+    resources :messages
+  end
 end

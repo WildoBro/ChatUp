@@ -6,8 +6,7 @@
       <td><%= index +=1 %></td>
       <td><%= user.email %></td>
       <td>
-        <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
-                    "data-sid" => current_user.id, "data-rip" => user.id %>
+        <%= link_to "Send Message", {:controller => "conversations", :action => "create", :sender_id => current_user.id, :recipient_id => user.id } , :method => :post, class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => user.id  %>
       </td>
     </tr>
 <% end %>

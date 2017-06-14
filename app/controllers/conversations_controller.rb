@@ -11,7 +11,8 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.create(conversation_params)
     end
 
-    render json: { conversation_id: @conversation.id }
+    # render json: { conversation_id: @conversation.id }
+    redirect_to conversation_path(@conversation)
   end
 
   def show
